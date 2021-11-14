@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <title>One page Application</title>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand">One Page Application</a>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link btn_menu" screen_name="todo" href="#/todo">Todo List
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn_menu" screen_name="quiz" href="#/quiz">Ninja Quiz</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+            <div class="screen_data"></div>
+
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function ($) {
+            $(document).find('.screen_data').load("screens/todo.html");
+
+            $(document).on('click', '.btn_menu', function (event) {
+                event.preventDefault();
+
+                var screen_name = $(this).attr('screen_name');
+
+                window.location.hash = '/' + screen_name;
+
+                $(document).find('.screen_name').html(screen_name);;
+
+                if (screen_name == "todo") {
+                    $(document).find('.screen_data').load("screens/todo.html");
+                } else if (screen_name == "quiz") {
+                    $(document).find('.screen_data').load("screens/quiz.html");
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>
